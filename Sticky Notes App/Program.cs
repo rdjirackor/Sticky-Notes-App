@@ -16,7 +16,7 @@ namespace Sticky_Notes_App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FirstPage());
+            Application.Run(new Form1());
         }
     }
 }

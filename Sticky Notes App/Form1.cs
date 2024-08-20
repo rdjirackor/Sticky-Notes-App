@@ -11,19 +11,19 @@ using System.Windows.Forms;
 
 namespace Sticky_Notes_App
 {
-    public partial class FirstPage : Form
+    public partial class Form1 : Form
     {
-        public FirstPage()
+        public Form1()
         {
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void First_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }

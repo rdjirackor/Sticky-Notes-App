@@ -34,6 +34,7 @@ namespace Sticky_Notes_App
             this.label1 = new System.Windows.Forms.Label();
             this.search = new Sticky_Notes_App.RoundButton();
             this.addbutton = new Sticky_Notes_App.RoundButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // label1
@@ -75,19 +76,27 @@ namespace Sticky_Notes_App
             this.addbutton.TabIndex = 1;
             this.addbutton.UseVisualStyleBackColor = false;
             // 
-            // Form1
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(1, 81);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(760, 405);
+            this.panel1.TabIndex = 2;
+            // 
+            // FirstPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(843, 573);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.search);
             this.Controls.Add(this.addbutton);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Rockwell", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.Control;
-            this.Name = "Form1";
+            this.Name = "FirstPage";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.First_Load);
             this.ResumeLayout(false);
 
         }
@@ -97,6 +106,7 @@ namespace Sticky_Notes_App
         private System.Windows.Forms.Label label1;
         private RoundButton search;
         private RoundButton addbutton;
+        private Panel panel1;
     }
 }
 
