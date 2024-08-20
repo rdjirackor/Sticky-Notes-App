@@ -1,6 +1,9 @@
-﻿namespace Sticky_Notes_App
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace Sticky_Notes_App
 {
-    partial class Form1
+    partial class FirstPage
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +32,8 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            RoundButton addbutton = new RoundButton();
-            this.button2 = new System.Windows.Forms.Button();
+            this.search = new Sticky_Notes_App.RoundButton();
+            this.addbutton = new Sticky_Notes_App.RoundButton();
             this.SuspendLayout();
             // 
             // label1
@@ -49,37 +52,39 @@
             this.label1.Text = "302 Project";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // search
+            // 
+            this.search.BackColor = System.Drawing.Color.White;
+            this.search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.search.Image = global::Sticky_Notes_App.Properties.Resources.search_icon2;
+            this.search.Location = new System.Drawing.Point(36, 492);
+            this.search.Name = "search";
+            this.search.Size = new System.Drawing.Size(70, 70);
+            this.search.TabIndex = 1;
+            this.search.UseVisualStyleBackColor = false;
+            // 
             // addbutton
             // 
-            addbutton.Width = 100;
-            addbutton.Height = 100;
-           // addButton.Image = Image.FromFile();
-
-            //  this.addbutton.Location = new System.Drawing.Point(754, 530);
-            // this.addbutton.Name = "addbutton";
-            // this.addbutton.Size = new System.Drawing.Size(54, 33);
-            //this.addbutton.TabIndex = 1;
-            //this.addbutton.Text = "addbutton";
-            //this.addbutton.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(36, 509);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(62, 37);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.addbutton.BackColor = System.Drawing.Color.Transparent;
+            this.addbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addbutton.Image = global::Sticky_Notes_App.Properties.Resources.add_icon;
+            this.addbutton.Location = new System.Drawing.Point(749, 492);
+            this.addbutton.Name = "addbutton";
+            this.addbutton.Padding = new System.Windows.Forms.Padding(30);
+            this.addbutton.Size = new System.Drawing.Size(60, 60);
+            this.addbutton.TabIndex = 1;
+            this.addbutton.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(843, 573);
-            this.Controls.Add(this.button2);
-          //  this.Controls.Add(this.addbutton);
+            this.Controls.Add(this.search);
+            this.Controls.Add(this.addbutton);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Rockwell", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.SystemColors.Control;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -90,8 +95,8 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-      //  private System.Windows.Forms.Button addbutton;
-        private System.Windows.Forms.Button button2;
+        private RoundButton search;
+        private RoundButton addbutton;
     }
 }
 

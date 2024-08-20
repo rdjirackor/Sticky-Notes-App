@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Sticky_Notes_App
 {
-    public partial class Form1 : Form
+    public partial class FirstPage : Form
     {
-        public Form1()
+        public FirstPage()
         {
             InitializeComponent();
         }
