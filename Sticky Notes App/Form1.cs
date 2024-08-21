@@ -27,5 +27,14 @@ namespace Sticky_Notes_App
         {
 
         }
+        private void Button_Done(object sender, EventArgs e)
+        {
+            FirstPage newForm = new FirstPage();
+
+            newForm.Show();
+            this.Hide();
+
+
+        }
     }
 }

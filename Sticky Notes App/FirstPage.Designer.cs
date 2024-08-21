@@ -35,6 +35,8 @@ namespace Sticky_Notes_App
             this.search = new Sticky_Notes_App.RoundButton();
             this.addbutton = new Sticky_Notes_App.RoundButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tablelayout = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -75,13 +77,27 @@ namespace Sticky_Notes_App
             this.addbutton.Size = new System.Drawing.Size(60, 60);
             this.addbutton.TabIndex = 1;
             this.addbutton.UseVisualStyleBackColor = false;
+            this.addbutton.Click += new System.EventHandler(this.Button_add);
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(1, 81);
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.tablelayout);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(760, 405);
+            this.panel1.Size = new System.Drawing.Size(843, 573);
             this.panel1.TabIndex = 2;
+            // 
+            // tablelayout
+            // 
+            this.tablelayout.ColumnCount = 4;
+            this.tablelayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tablelayout.Location = new System.Drawing.Point(0, 0);
+            this.tablelayout.Name = "tablelayout";
+            this.tablelayout.RowCount = 4;
+            this.tablelayout.Size = new System.Drawing.Size(843, 573);
+            this.tablelayout.TabIndex = 0;
             // 
             // FirstPage
             // 
@@ -97,6 +113,7 @@ namespace Sticky_Notes_App
             this.Name = "FirstPage";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.First_Load);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -107,6 +124,7 @@ namespace Sticky_Notes_App
         private RoundButton search;
         private RoundButton addbutton;
         private Panel panel1;
+        private TableLayoutPanel tablelayout;
     }
 }
 

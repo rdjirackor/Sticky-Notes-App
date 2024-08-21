@@ -27,5 +27,18 @@ namespace Sticky_Notes_App
         {
 
         }
+
+        private void Button_add(object sender, EventArgs e)
+        {
+            Form1 newForm = new Form1();
+
+            // Show the new form
+            newForm.Show();
+            this.Hide();
+
+
+        }      
+        
+
     }
 }

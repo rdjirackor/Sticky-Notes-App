@@ -74,6 +74,7 @@ namespace Sticky_Notes_App
             this.Done.Size = new System.Drawing.Size(60, 60);
             this.Done.TabIndex = 1;
             this.Done.UseVisualStyleBackColor = false;
+            this.Done.Click += new System.EventHandler(Button_Done);
             // 
             // Form1
             // 
