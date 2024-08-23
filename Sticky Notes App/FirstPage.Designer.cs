@@ -29,14 +29,16 @@ namespace Sticky_Notes_App
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
+ 
+
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FirstPage));
             this.label1 = new System.Windows.Forms.Label();
             this.search = new Sticky_Notes_App.RoundButton();
             this.addbutton = new Sticky_Notes_App.RoundButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tablelayout = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -50,7 +52,7 @@ namespace Sticky_Notes_App
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(44, 0, 0, 0);
-            this.label1.Size = new System.Drawing.Size(1227, 78);
+            this.label1.Size = new System.Drawing.Size(1366, 78);
             this.label1.TabIndex = 0;
             this.label1.Text = "302 Project";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -60,8 +62,9 @@ namespace Sticky_Notes_App
             this.search.BackColor = System.Drawing.Color.White;
             this.search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.search.Image = global::Sticky_Notes_App.Properties.Resources.search_icon2;
-            this.search.Location = new System.Drawing.Point(36, 492);
+            this.search.Location = new System.Drawing.Point(200, 560);
             this.search.Name = "search";
+            this.search.Padding = new System.Windows.Forms.Padding(30);
             this.search.Size = new System.Drawing.Size(70, 70);
             this.search.TabIndex = 1;
             this.search.UseVisualStyleBackColor = false;
@@ -71,7 +74,7 @@ namespace Sticky_Notes_App
             this.addbutton.BackColor = System.Drawing.Color.Transparent;
             this.addbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addbutton.Image = global::Sticky_Notes_App.Properties.Resources.add_icon;
-            this.addbutton.Location = new System.Drawing.Point(749, 492);
+            this.addbutton.Location = new System.Drawing.Point(1100, 560);
             this.addbutton.Name = "addbutton";
             this.addbutton.Padding = new System.Windows.Forms.Padding(30);
             this.addbutton.Size = new System.Drawing.Size(60, 60);
@@ -82,38 +85,50 @@ namespace Sticky_Notes_App
             // panel1
             // 
             this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.tablelayout);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(0, 78);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(843, 573);
+            this.panel1.Size = new System.Drawing.Size(1366, 450);
             this.panel1.TabIndex = 2;
             // 
             // tablelayout
             // 
-            this.tablelayout.ColumnCount = 4;
+            this.tablelayout.AutoScroll = true;
+            this.tablelayout.AutoSize = true;
+            this.tablelayout.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tablelayout.ColumnCount = 3;
+            this.tablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
+            this.tablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
+            this.tablelayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
             this.tablelayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tablelayout.Font = new System.Drawing.Font("Rockwell", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tablelayout.Location = new System.Drawing.Point(0, 0);
             this.tablelayout.Name = "tablelayout";
             this.tablelayout.RowCount = 4;
-            this.tablelayout.Size = new System.Drawing.Size(843, 573);
+            this.tablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tablelayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tablelayout.Size = new System.Drawing.Size(1364, 448);
             this.tablelayout.TabIndex = 0;
+            this.tablelayout.Paint += new System.Windows.Forms.PaintEventHandler(this.tablelayout_Paint);
             // 
             // FirstPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(843, 573);
+            this.ClientSize = new System.Drawing.Size(1300, 700);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.search);
             this.Controls.Add(this.addbutton);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Rockwell", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.Control;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FirstPage";
-            this.Text = "Form1";
+            this.Text = "Sticky Notes - Home";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormClosed_);
             this.Load += new System.EventHandler(this.First_Load);
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -125,6 +140,7 @@ namespace Sticky_Notes_App
         private RoundButton addbutton;
         private Panel panel1;
         private TableLayoutPanel tablelayout;
+
     }
 }
 
