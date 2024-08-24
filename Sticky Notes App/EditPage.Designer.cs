@@ -31,6 +31,7 @@ namespace Sticky_Notes_App
         /// </summary>
         private void InitializeComponent()
         {
+            int screenWidth = Screen.PrimaryScreen.Bounds.Width;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditPage));
             this.label2 = new System.Windows.Forms.Label();
             this.cancel = new Sticky_Notes_App.RoundButton();
@@ -87,11 +88,10 @@ namespace Sticky_Notes_App
             this.panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel.Controls.Add(this.textBox1);
             this.panel.Controls.Add(this.richTextBox);
-            this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel.Location = new System.Drawing.Point(0, 0);
+            this.panel.Location = new System.Drawing.Point(0, 78);
             this.panel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(1300, 700);
+            this.panel.Size = new System.Drawing.Size(screenWidth, 350);
             this.panel.TabIndex = 2;
             // 
             // textBox1

@@ -21,36 +21,79 @@ namespace Sticky_Notes_App
         {
             InitializeComponent();
         }
-        private void SetPlaceholderText(TextBox textBox, string hint)
+        internal virtual void SetPlaceholderText(Control textBox, string hint)
+        {
+            if (textBox is TextBoxBase textControl) // TextBoxBase is the base class for both TextBox and RichTextBox
+            {
+                // Set the initial placeholder text
+                textControl.Text = hint;
+                textControl.ForeColor = Color.Gray;
+
+                // Handle the Focus event to clear the hint when the user focuses on the control
+                textControl.Enter += (sender, e) =>
+                {
+                    if (textControl.Text == hint)
+                    {
+                        textControl.Text = "";
+                        textControl.ForeColor = Color.Black;
+                    }
+                };
+
+                // Handle the Leave event to restore the hint if the control is empty
+                textControl.Leave += (sender, e) =>
+                {
+                    if (string.IsNullOrWhiteSpace(textControl.Text))
+                    {
+                        textControl.Text = hint;
+                        textControl.ForeColor = Color.Gray;
+                    }
+                };
+            }
+        }
+        internal virtual void SetPlaceholderText(TextBox textBox, string hint)
+        {
+            SetPlaceholderTextCommon(textBox, hint);
+        }
+
+        internal virtual void SetPlaceholderText(RichTextBox richTextBox, string hint)
+        {
+            SetPlaceholderTextCommon(richTextBox, hint);
+        }
+
+        private void SetPlaceholderTextCommon(TextBoxBase textControl, string hint)
         {
             // Set the initial placeholder text
-            textBox.Text = hint;
-            textBox.ForeColor = Color.Gray;
+            textControl.Text = hint;
+            textControl.ForeColor = Color.Gray;
 
-            // Handle the Focus event to clear the hint when user focuses on the TextBox
-            textBox.Enter += (sender, e) =>
+            // Handle the Focus event to clear the hint when the user focuses on the control
+            textControl.Enter += (sender, e) =>
             {
-                if (textBox.Text == hint)
+                if (textControl.Text == hint)
                 {
-                    textBox.Text = "";
-                    textBox.ForeColor = Color.Black;
+                    textControl.Text = "";
+                    textControl.ForeColor = Color.Black;
                 }
             };
 
-            // Handle the Leave event to restore the hint if the TextBox is empty
-            textBox.Leave += (sender, e) =>
+            textControl.Leave += (sender, e) =>
             {
-                if (string.IsNullOrWhiteSpace(textBox.Text))
+                if (string.IsNullOrWhiteSpace(textControl.Text))
                 {
-                    textBox.Text = hint;
-                    textBox.ForeColor = Color.Gray;
+                    textControl.Text = hint;
+                    textControl.ForeColor = Color.Gray;
                 }
             };
         }
 
+
         public string EnteredText
         {
-            get { return textBox1.Text; }
+            get { return textBox1.Text;}
+        }
+        public string EnteredText2
+        {
+            get { return richTextBox.Text;}
         }
 
 
@@ -65,17 +108,23 @@ namespace Sticky_Notes_App
             textBox1.Height = 1300;
                 this.WindowState = FormWindowState.Maximized;
             SetPlaceholderText(textBox1, "Enter your title here...");
+            
+            SetPlaceholderText(richTextBox, "Enter your note here...");
+            CenterControl(textBox1);
+            CenterControl(richTextBox);
 
 
 
 
         }
+
         private void Button_Done(object sender, EventArgs e)
         {
             string text = textBox1.Text;
+            string text2 = richTextBox.Text;
 
             // Save the text to the database
-            SaveTextToDatabase(text);
+            SaveTextToDatabase(text,text2);
 
             FirstPage newForm = new FirstPage();
             newForm.Show();
@@ -86,24 +135,32 @@ namespace Sticky_Notes_App
             Application.Exit();
 
         }
-        private void SaveTextToDatabase(string text)
+        private void SaveTextToDatabase(string text, string text2)
         {
 
             using (var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Open();
-                using (SQLiteCommand cmd = new SQLiteCommand("CREATE TABLE IF NOT EXISTS Notes (Id INTEGER PRIMARY KEY AUTOINCREMENT, Text TEXT)", connection))
+                using (SQLiteCommand cmd = new SQLiteCommand("CREATE TABLE IF NOT EXISTS Notes (Id INTEGER PRIMARY KEY AUTOINCREMENT, Text TEXT, Note TEXT)", connection))
                 {
                     cmd.ExecuteNonQuery();
                 }
 
                 using (var command = new SQLiteCommand(connection))
                 {
-                    command.CommandText = "INSERT INTO Notes (Text) VALUES (@text)";
+                    command.CommandText = "INSERT INTO Notes (Text), (Note) VALUES (@text) (@text2)";
                     command.Parameters.AddWithValue("@text", text);
+                    command.Parameters.AddWithValue("@text2", text2);
                     command.ExecuteNonQuery();
                 }
             }
         }
+        private void CenterControl(Control control)
+        {
+            int x = (control.Parent.ClientSize.Width - control.Width) / 2;
+
+            control.Location = new Point(x, control.Location.Y);
+        }
+
     }
 }
