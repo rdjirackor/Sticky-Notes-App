@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sticky Notes App", "Sticky Notes App\Sticky Notes App.csproj", "{3713B2C7-F8F1-4893-8BE4-F65E92D375CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quick Notes", "Sticky Notes App\Quick Notes.csproj", "{3713B2C7-F8F1-4893-8BE4-F65E92D375CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

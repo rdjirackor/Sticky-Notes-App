@@ -21,6 +21,15 @@ namespace Sticky_Notes_App
         {
             InitializeComponent();
         }
+        FirstPage newForm = new FirstPage();
+
+        private void Button_Cancel(object sender, EventArgs e)
+        {
+            newForm.Show();
+            this.Hide();
+        
+        }
+
         internal virtual void SetPlaceholderText(Control textBox, string hint)
         {
             if (textBox is TextBoxBase textControl) // TextBoxBase is the base class for both TextBox and RichTextBox
@@ -123,13 +132,21 @@ namespace Sticky_Notes_App
             string text = textBox1.Text;
             string text2 = richTextBox.Text;
 
-            // Save the text to the database
-            SaveTextToDatabase(text,text2);
+            if ((text != "Enter your title here...") && (text2 != "Enter your note here..."))
+            {
+                SaveTextToDatabase(text, text2);
 
-            FirstPage newForm = new FirstPage();
-            newForm.Show();
-            this.Hide();
+                // Make sure the new form updates the data
+              //  (this.Owner as FirstPage)?.RetrieveDataFromDatabase();
+
+                this.Hide(); // Close the current form
+            }
+            else
+            {
+                MessageBox.Show("Note Empty", "Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
+
         private void FormClosed_(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
@@ -137,6 +154,7 @@ namespace Sticky_Notes_App
         }
         private void SaveTextToDatabase(string text, string text2)
         {
+            bool rowsEqualTo12 = false;
 
             using (var connection = new SQLiteConnection(ConnectionString))
             {
@@ -145,22 +163,44 @@ namespace Sticky_Notes_App
                 {
                     cmd.ExecuteNonQuery();
                 }
-
-                using (var command = new SQLiteCommand(connection))
+                using (var countCommand = new SQLiteCommand("SELECT COUNT(*) FROM Notes", connection))
                 {
-                    command.CommandText = "INSERT INTO Notes (Text), (Note) VALUES (@text) (@text2)";
-                    command.Parameters.AddWithValue("@text", text);
-                    command.Parameters.AddWithValue("@text2", text2);
-                    command.ExecuteNonQuery();
+                    int rowCount = Convert.ToInt32(countCommand.ExecuteScalar());
+                    if (rowCount == 12)
+                    {
+                        rowsEqualTo12 = true;
+                    }
                 }
+                if (rowsEqualTo12 != false)
+                {
+                    using (var command = new SQLiteCommand(connection))
+                    {
+                        command.CommandText = "INSERT INTO Notes (Text, Note) VALUES (@text, @text2)";
+                        command.Parameters.AddWithValue("@text", text);
+                        command.Parameters.AddWithValue("@text2", text2);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Storage Full..", "Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
+                }
+                
             }
+
+            
         }
+
         private void CenterControl(Control control)
         {
             int x = (control.Parent.ClientSize.Width - control.Width) / 2;
 
             control.Location = new Point(x, control.Location.Y);
         }
+
+       
+
 
     }
 }

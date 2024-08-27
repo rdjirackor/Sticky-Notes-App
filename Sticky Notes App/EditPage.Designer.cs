@@ -68,7 +68,7 @@ namespace Sticky_Notes_App
             this.cancel.Size = new System.Drawing.Size(70, 70);
             this.cancel.TabIndex = 1;
             this.cancel.UseVisualStyleBackColor = false;
-            // 
+            this.cancel.Click += new System.EventHandler(this.Button_Cancel);           
             // Done
             // 
             this.Done.BackColor = System.Drawing.Color.Transparent;
