@@ -32,13 +32,11 @@ namespace Sticky_Notes_App
 
         internal virtual void SetPlaceholderText(Control textBox, string hint)
         {
-            if (textBox is TextBoxBase textControl) // TextBoxBase is the base class for both TextBox and RichTextBox
+            if (textBox is TextBoxBase textControl) 
             {
-                // Set the initial placeholder text
                 textControl.Text = hint;
                 textControl.ForeColor = Color.Gray;
 
-                // Handle the Focus event to clear the hint when the user focuses on the control
                 textControl.Enter += (sender, e) =>
                 {
                     if (textControl.Text == hint)
@@ -48,7 +46,6 @@ namespace Sticky_Notes_App
                     }
                 };
 
-                // Handle the Leave event to restore the hint if the control is empty
                 textControl.Leave += (sender, e) =>
                 {
                     if (string.IsNullOrWhiteSpace(textControl.Text))
@@ -71,11 +68,9 @@ namespace Sticky_Notes_App
 
         private void SetPlaceholderTextCommon(TextBoxBase textControl, string hint)
         {
-            // Set the initial placeholder text
             textControl.Text = hint;
             textControl.ForeColor = Color.Gray;
 
-            // Handle the Focus event to clear the hint when the user focuses on the control
             textControl.Enter += (sender, e) =>
             {
                 if (textControl.Text == hint)
@@ -136,10 +131,10 @@ namespace Sticky_Notes_App
             {
                 SaveTextToDatabase(text, text2);
 
-                // Make sure the new form updates the data
-              //  (this.Owner as FirstPage)?.RetrieveDataFromDatabase();
+                //  (this.Owner as FirstPage)?.RetrieveDataFromDatabase();
+                newForm.Show();
 
-                this.Hide(); // Close the current form
+                this.Hide(); 
             }
             else
             {
@@ -171,7 +166,7 @@ namespace Sticky_Notes_App
                         rowsEqualTo12 = true;
                     }
                 }
-                if (rowsEqualTo12 != false)
+                if (rowsEqualTo12 is false)
                 {
                     using (var command = new SQLiteCommand(connection))
                     {

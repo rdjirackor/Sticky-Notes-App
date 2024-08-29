@@ -31,7 +31,6 @@ namespace Sticky_Notes_App
                     int id = (int)label.Tag;
                     DeleteNoteFromDatabase(id);
 
-                    // Clear the label's text
                     label.Text = string.Empty;
                 }
             }
@@ -86,7 +85,6 @@ namespace Sticky_Notes_App
 
         private void label1_Click(object sender, EventArgs e)
         {
-            // Event handler for label1 click event
         }
 
         private void First_Load(object sender, EventArgs e)
@@ -114,7 +112,6 @@ namespace Sticky_Notes_App
 
         private void tablelayout_Paint(object sender, PaintEventArgs e)
         {
-            // Event handler for tablelayout paint event
         }
     }
 }
