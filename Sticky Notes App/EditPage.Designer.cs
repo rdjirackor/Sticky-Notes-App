@@ -55,7 +55,7 @@ namespace Sticky_Notes_App
             this.label2.Padding = new System.Windows.Forms.Padding(44, 0, 0, 0);
             this.label2.Size = new System.Drawing.Size(1300, 78);
             this.label2.TabIndex = 0;
-            this.label2.Text = "302 Project";
+            this.label2.Text = "Quick Notes";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // cancel

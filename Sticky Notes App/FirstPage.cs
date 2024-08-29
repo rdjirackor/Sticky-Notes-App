@@ -72,7 +72,7 @@ namespace Sticky_Notes_App
                     {
                         label.Text = text;
                         label.Tag = id;
-                       // label.Click += new EventHandler(Label_Click);
+                        label.Click += new EventHandler(Label_Click);
                     }
                     i++;
                 }
