@@ -31,7 +31,6 @@ namespace Sticky_Notes_App
         /// </summary>
         private void InitializeComponent()
         {
-            int screenWidth = Screen.PrimaryScreen.Bounds.Width;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditPage));
             this.label2 = new System.Windows.Forms.Label();
             this.cancel = new Sticky_Notes_App.RoundButton();
@@ -57,6 +56,7 @@ namespace Sticky_Notes_App
             this.label2.TabIndex = 0;
             this.label2.Text = "Quick Notes";
             this.label2.Click += new System.EventHandler(this.label2_Click);
+
             // 
             // cancel
             // 
@@ -68,7 +68,11 @@ namespace Sticky_Notes_App
             this.cancel.Size = new System.Drawing.Size(70, 70);
             this.cancel.TabIndex = 1;
             this.cancel.UseVisualStyleBackColor = false;
-            this.cancel.Click += new System.EventHandler(this.Button_Cancel);           
+            this.cancel.Click += new System.EventHandler(this.Button_Cancel);
+            this.cancel.MouseHover += new System.EventHandler(this.button_hover);
+            this.cancel.MouseLeave += new System.EventHandler(this.button_leave);
+
+            // 
             // Done
             // 
             this.Done.BackColor = System.Drawing.Color.Transparent;
@@ -81,6 +85,8 @@ namespace Sticky_Notes_App
             this.Done.TabIndex = 1;
             this.Done.UseVisualStyleBackColor = false;
             this.Done.Click += new System.EventHandler(this.Button_Done);
+            this.Done.MouseHover += new System.EventHandler(this.button_hover);
+            this.Done.MouseLeave += new System.EventHandler(this.button_leave);
             // 
             // panel
             // 
@@ -91,7 +97,7 @@ namespace Sticky_Notes_App
             this.panel.Location = new System.Drawing.Point(0, 78);
             this.panel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(screenWidth, 350);
+            this.panel.Size = new System.Drawing.Size(1366, 350);
             this.panel.TabIndex = 2;
             // 
             // textBox1
@@ -122,7 +128,7 @@ namespace Sticky_Notes_App
             this.ForeColor = System.Drawing.SystemColors.Control;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EditPage";
-            this.Text = "Sticky Notes - Edit";
+            this.Text = "Quick Notes - Edit";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormClosed_);
             this.Load += new System.EventHandler(this.EditPage_Load);
             this.panel.ResumeLayout(false);

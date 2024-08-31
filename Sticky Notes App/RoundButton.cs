@@ -8,8 +8,10 @@ using System.Drawing;
 
 namespace Sticky_Notes_App
 {
-    internal class RoundButton : Button
+    public class RoundButton : Button
     {
+
+       
         protected override void OnPaint(PaintEventArgs pevent)
         {
             base.OnPaint(pevent);

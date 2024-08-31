@@ -14,6 +14,13 @@ namespace Sticky_Notes_App
 {
     public partial class FirstPage : Form
     {
+        internal void CenterControl(Control control)
+        {
+            int x = (control.Parent.ClientSize.Width - control.Width) / 2;
+
+            control.Location = new Point(x, 560);
+        }
+
         public FirstPage()
         {
             InitializeComponent();
@@ -66,7 +73,7 @@ namespace Sticky_Notes_App
                 while (reader.Read() && i <= 12)
                 {
                     int id = reader.GetInt32(0);
-                    string text = reader["Text"].ToString() + reader["Note"].ToString();
+                    string text = reader["Text"].ToString() + '\n'+ reader["Note"].ToString();
                     Control noteLabel = this.tablelayout.Controls.Find("note" + i, true).FirstOrDefault();
                     if (noteLabel != null && noteLabel is Label label)
                     {
@@ -86,14 +93,32 @@ namespace Sticky_Notes_App
         private void label1_Click(object sender, EventArgs e)
         {
         }
-
+        private void button_hover(object sender, EventArgs e) {
+            Cursor = Cursors.Hand;
+        }
+        private void button_leave(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Default;
+        }
         private void First_Load(object sender, EventArgs e)
         {
+           // ResetSettings();
+            CenterControl(addbutton);
             try
-            { RetrieveDataFromDatabase(); }
-            catch (System.Data.SQLite.SQLiteException) {
-                MessageBox.Show("Click on the add button to write a note", "Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            { RetrieveDataFromDatabase();
+                if (Properties.Settings.Default.displayedDelTip == false)
+                {
+                    MessageBox.Show("Click on notes to delete them", "Tip", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Properties.Settings.Default.displayedDelTip = true;
 
+
+                }
+            }
+            catch (System.Data.SQLite.SQLiteException) {
+                if (Properties.Settings.Default.displayedAddTip == false)
+                {
+                    MessageBox.Show("Click on the add button to write a note", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
 
         }
@@ -113,5 +138,14 @@ namespace Sticky_Notes_App
         private void tablelayout_Paint(object sender, PaintEventArgs e)
         {
         }
+        public void ResetSettings()
+        {
+            Properties.Settings.Default.displayedAddTip = false;
+            Properties.Settings.Default.displayedDelTip = false;
+            // Reset other settings as needed
+            Properties.Settings.Default.Save();
+        }
+
     }
+
 }

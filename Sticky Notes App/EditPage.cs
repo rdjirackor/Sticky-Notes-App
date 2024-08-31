@@ -15,6 +15,14 @@ namespace Sticky_Notes_App
 {
     public partial class EditPage : Form
     {
+        private void button_hover(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Hand;
+        }
+        private void button_leave(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Default;
+        }
         private const string ConnectionString = "Data Source=notes.db;Version=3;";
 
         public EditPage()
@@ -138,7 +146,7 @@ namespace Sticky_Notes_App
             }
             else
             {
-                MessageBox.Show("Note Empty", "Title", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please add a note or hit 'Cancel' to return", "Empty Note", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -150,6 +158,8 @@ namespace Sticky_Notes_App
         private void SaveTextToDatabase(string text, string text2)
         {
             bool rowsEqualTo12 = false;
+            Properties.Settings.Default.displayedAddTip = true ;
+            Properties.Settings.Default.Save();
 
             using (var connection = new SQLiteConnection(ConnectionString))
             {
@@ -157,6 +167,7 @@ namespace Sticky_Notes_App
                 using (SQLiteCommand cmd = new SQLiteCommand("CREATE TABLE IF NOT EXISTS Notes (Id INTEGER PRIMARY KEY AUTOINCREMENT, Text TEXT, Note TEXT)", connection))
                 {
                     cmd.ExecuteNonQuery();
+
                 }
                 using (var countCommand = new SQLiteCommand("SELECT COUNT(*) FROM Notes", connection))
                 {
